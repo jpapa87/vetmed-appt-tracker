@@ -16,10 +16,8 @@ class Vet(db.Model , SerializerMixin):
     name = db.Column(db.String)
     specialty = db.Column(db.String)
 
-
-
-    soaps = db.relationship('Soap' , back_populates= 'vets', cascade='all, delete-orphan')
-    patients = association_proxy('soaps' , 'patients')
+    soaps = db.relationship('Soap' , back_populates= 'vet', cascade='all, delete-orphan')
+    patients = association_proxy('soaps' , 'patient')
 
 
     # _password_hash = db.Column(db.String)
@@ -52,7 +50,7 @@ class Soap(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default=db.func.now())
 
     vet_id = db.Column(db.Integer , db.ForeignKey('vets.id'))
-    patient_id = db.Column(db.Integer , db.ForeignKey('patient.id'))
+    patient_id = db.Column(db.Integer , db.ForeignKey('patients.id'))
 
 
     vet = db.relationship('Vet', back_populates='soaps')
@@ -67,7 +65,7 @@ class Patient(db.Model , SerializerMixin):
     age = db.Column(db.Integer)
     species = db.Column(db.String)
 
-    vet = db.relationship('Vet' , back_populates= 'patients')
-    soap = db.relationship('Soap' , back_populates= 'patients')
+    soaps = db.relationship('Soap' , back_populates= 'patient')
+    vet = association_proxy('soaps' , 'patient')
 
     # TODO serialize_rules = ('-', '-')
