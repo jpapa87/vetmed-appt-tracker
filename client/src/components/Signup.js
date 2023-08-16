@@ -1,59 +1,72 @@
-import {useState} from "react";
 import { useHistory } from "react-router-dom";
-// Not currently needed, stretch goal:
+import {useFormik} from "formik";
+import * as yup from "yup";
 
 
-    function SignUp(){
-        const [username, setUsername] = useState('')
-        const [email, setEmail] = useState('')
-        const [password, setPassword] = useState('')
-        
-        function handleSubmit(e) {
-            e.preventDefault()
-            const newUser = {
-                username: username,
-                email: email,
-                password: password
-            }
-    }
+function SignUp({updateVet}){
+    const history = useHistory()
+    const formSchema = yup.object().shape({
+        name: yup.string().required("Please enter a name."),
+        password: yup.string().required("Please enter a password."),
+        email: yup.string().email(),
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            name:'',
+            password:'',
+            email:'',
+        },
+
+    validationSchema: formSchema,
+    onSubmit: (values) => {
+        console.log(values)
+        fetch('/vets', {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(values),
+        })
+            .then((r) => {
+                if (r.ok) {
+                    r.json().then((vet) => {updateVet(vet);
+                    history.push('/');
+                    })
+                } else {
+                    console.log("Bunny Fitch")
+                }
+            })
+        },
+    })
+    // console.log(formik.values.name)
     return (
-        <>
-            <form 
-                onSubmit={handleSubmit}
-            >
-                <h2>Create A New User</h2>
-                <input className="create-username"
-                    type="text"
-                    name="username"
-                    value={username}
-                    placeholder="Create Username"
-                    onChange={handleUsernameChange}
-                />
-                <input className="enter-email"
-                    type="text"
-                    name="email"
-                    value={email}
-                    placeholder="Enter Email"
-                    onChange={handleEmailChange}
-                />
-                <input className="create-password"
-                    type="password"
-                    name="password"
-                    value={password}
-                    placeholder="Create Password"
-                    onChange={handlePasswordChange}
-                />
-                <input className="create-new-user"
-                    type="submit"
-                    name="submit"
-                    value="Create New User"
-                />
-            </form>
-            {/* <div>
-                {errorMessage}
-            </div> */}
-        </>
-    )
+    <>
+        <h1> SignUp Here!</h1>
+        <form onSubmit= {formik.handleSubmit}>
+            <label>Username</label>
+            <input 
+                type="text"
+                name="name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+        />
+            <label>Password</label>
+            <input 
+                type="password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+        />
+            <label>Email</label>
+            <input 
+                type="text"
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+            />
+            <input type="submit" value="SignUp" />
+        </form>
+    </>
+)
 }
 
 export default SignUp;

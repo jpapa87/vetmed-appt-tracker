@@ -1,21 +1,45 @@
 
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import SignUp from "./components/Signup";
-import Home from "./components/Homepage";
+import SignUp from "./Signup";
+import Homepage from "./Homepage";
+import HeaderNavBar from "./HeaderNavBar"
+import NewPatientForm from "./NewPatientForm"
+import NewSoapForm from "./NewPatientForm"
+import AllPatients from "./AllPatients"
+import PatientDetail from "./PatientDetail"
+import Login from "./Login";
 
 function App() {
+  const [vet , setVet] = useState (null)
+
+  useEffect(() => {
+    fetchUser();
+  }, [])
+
+  const fetchUser = () => {
+    fetch('/authorized').then((resp) => {
+      if (resp.ok) {
+        resp.json().then((vet) => setVet(vet));
+      }
+    });
+  };
+  const updateVet = (vet) => setVet(vet);
+
   return (
   
     <div className="App">
-      <h1>Welcome to VetMed Appointment Tracker!</h1>
-      <NavBar />
+      <h1>VetNotes</h1>
+      <HeaderNavBar />
         <Switch>
           <Route exact path='/'>
-            <Home />
+            <Homepage />
           </Route>        
           <Route path='/signup'>
-            <SignUp />
+            <SignUp updateVet={updateVet}/>
+          </Route>
+          <Route path='/login'>
+            <Login updateVet={updateVet}/>
           </Route>
           <Route path='/new_patient_form'>
             <NewPatientForm />
@@ -24,7 +48,7 @@ function App() {
             <NewSoapForm />
           </Route>
           <Route path='/all_patients'>
-            <Patients />
+            <AllPatients />
           </Route>
           <Route path="/all_patients/:id">
             <PatientDetail />
