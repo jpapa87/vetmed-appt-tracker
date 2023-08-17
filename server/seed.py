@@ -21,9 +21,9 @@ if __name__ == '__main__':
 
         print("Seeding users...")
         #Users Seed
-        v1= Vet (name = 'Dr. Bowski', email = 'bowski@mail.com', password_hash = 'password' , specialty = 'Dermasurgery')
-        v2 = Vet (name = 'Dr. Amy Free', email = 'amyfree@mail.com', password_hash = 'password', specialty= 'Ophthalmology')
-        v3 = Vet (name = 'Dr. Jess Papa', email = 'jesspapa@mail.com', password_hash = 'password', specialty = 'Oncology')
+        v1= Vet (name = 'Bowski', email = 'bowski@mail.com', password_hash = 'password' , specialty = 'Dermasurgery')
+        v2 = Vet (name = 'Amyfree', email = 'amyfree@mail.com', password_hash = 'password', specialty= 'Ophthalmology')
+        v3 = Vet (name = 'Jesspapa', email = 'jesspapa@mail.com', password_hash = 'password', specialty = 'Oncology')
 
         vets = [v1, v2, v3]
         db.session.add_all(vets)

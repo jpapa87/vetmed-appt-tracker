@@ -16,6 +16,7 @@ function SignUp({updateVet}){
             name:'',
             password:'',
             email:'',
+            specialty:'',
         },
 
     validationSchema: formSchema,
@@ -48,19 +49,26 @@ function SignUp({updateVet}){
                 name="name"
                 value={formik.values.name}
                 onChange={formik.handleChange}
-        />
+            />
             <label>Password</label>
             <input 
                 type="password"
                 name="password"
                 value={formik.values.password}
                 onChange={formik.handleChange}
-        />
+            />
             <label>Email</label>
             <input 
                 type="text"
                 name="email"
                 value={formik.values.email}
+                onChange={formik.handleChange}
+            />
+            <label>Specialty</label>
+            <input 
+                type="text"
+                name="specialty"
+                value={formik.values.specialty}
                 onChange={formik.handleChange}
             />
             <input type="submit" value="SignUp" />

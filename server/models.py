@@ -24,6 +24,8 @@ class Vet(db.Model , SerializerMixin):
 
     _password_hash = db.Column(db.String)
 
+    serialize_rules= ("-_password_hash",)
+
     @property
     def password_hash(self):
         return self._password_hash
@@ -42,7 +44,7 @@ class Vet(db.Model , SerializerMixin):
 
     def authenticate(self , some_string):
         return bcrypt.check_password_hash(
-            self.password_hash,
+            self._password_hash,
             some_string.encode('utf-8')
         )
 

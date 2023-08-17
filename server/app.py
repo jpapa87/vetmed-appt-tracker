@@ -13,10 +13,9 @@ def index():
 class Vets(Resource):
     def post(self):
         data = request.get_json()
-        # ipdb.set_trace()
         try:
             vet = Vet(
-                username = data['username'],
+                name = data['name'],
                 password_hash = data['password'],
                 email = data['email'],
                 specialty = data['specialty']
@@ -30,28 +29,29 @@ class Vets(Resource):
 
         session['vet.id'] = vet.id
 
-        return make_response(vet.to_dict(),201 )
+        return make_response(vet.to_dict(), 201 )
 
 api.add_resource(Vets, '/vets')
 
 @app.route('/login' , methods= ['POST'])
 def login():
     data = request.get_json()
+    # ipdb.set_trace()
     try:
         vet = Vet.query.filter_by(name=data['name']).first()
         if vet.authenticate(data['password']):
-            session['vet_id'] = vet.id
+            session['vet.id'] = vet.id
             response = make_response(vet.to_dict(), 200)
             return response
         else: 
             return make_response({'error' :'name or password incorrect'}, 401)
     except:
-        return make_response({{'error': 'name or password incorrect'}, 401})
+        return make_response({'error': 'name or password incorrect'}, 401)
     
 @app.route('/authorized' , methods=['GET'])
 def authorize():
     try:
-        vet = Vet.query.filter_by(id=session.get('vet_id')).first()
+        vet = Vet.query.filter_by(id=session.get('vet.id')).first()
         response = make_response(vet.to_dict(), 200)
         return response
     except:
@@ -61,7 +61,7 @@ def authorize():
 
 @app.route('/logout' , methods= ['DELETE'])
 def logout():
-    session['vet_id'] = None
+    session['vet.id'] = None
     return make_response('' , 204)
 
 if __name__ == '__main__':
