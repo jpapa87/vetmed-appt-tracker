@@ -1,17 +1,17 @@
 import React from "react";
 
-
-function Home() {
+function Homepage(){
     return (
-    <div>
-        <div className="image">
-        <img
-        src="https://cdn9.bigcommerce.com/s-n4mhlz9/products/3072/images/12277/S826_Paw_Prints_4.15_x_5.25__21559.1548996960.1280.1280.gif?c=2"
-        alt="image"
-        />
+        <div>
+            <div className="about-title"><h1>Welcome To VetNotes!</h1>
+            </div>
+        <div className="about-info"><p>Info here</p>
         </div>
-    </div>    
-    );
+        {/* <div class="home-image">
+                <img src="https://images.pexels.com/photos/1270184/pexels-photo-1270184.jpeg?cs=srgb&dl=pexels-ahmed-adly-1270184.jpg&fm=jpg "/>
+        </div> */}
+        </div>
+    )
 }
 
-export default Home;
+export default Homepage;

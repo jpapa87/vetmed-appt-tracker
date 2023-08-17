@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import SignUp from "./Signup";
 import Homepage from "./Homepage";
-import HeaderNavBar from "./HeaderNavBar"
+import NavBar from "./NavBar"
 import NewPatientForm from "./NewPatientForm"
-import NewSoapForm from "./NewPatientForm"
+import NewSoapForm from "./NewSoapForm"
 import AllPatients from "./AllPatients"
 import PatientDetail from "./PatientDetail"
 import Login from "./Login";
@@ -30,30 +30,30 @@ function App() {
   
     <div className="App">
       <h1>VetNotes</h1>
-      <HeaderNavBar />
-        <Switch>
-          <Route exact path='/'>
-            <Homepage />
-          </Route>        
-          <Route path='/signup'>
-            <SignUp updateVet={updateVet}/>
-          </Route>
-          <Route path='/login'>
-            <Login updateVet={updateVet}/>
-          </Route>
-          <Route path='/new_patient_form'>
-            <NewPatientForm />
-          </Route>
-          <Route path= '/new_soap_form'> 
-            <NewSoapForm />
-          </Route>
-          <Route path='/all_patients'>
-            <AllPatients />
-          </Route>
-          <Route path="/all_patients/:id">
-            <PatientDetail />
-          </Route>
-        </Switch>
+      <NavBar />
+      <Switch>
+        <Route exact path='/'>
+          <Homepage />
+        </Route>        
+        <Route path='/signup'>
+          <SignUp updateVet={updateVet}/>
+        </Route>
+        <Route path='/login'>
+          <Login updateVet={updateVet}/>
+        </Route>
+        <Route path='/new_patient_form'>
+          <NewPatientForm />
+        </Route>
+        <Route exact path= '/new_soap_form'> 
+          <NewSoapForm NewSoapForm={NewSoapForm}/>
+        </Route>
+        <Route path='/all_patients'>
+          <AllPatients />
+        </Route>
+        <Route path="/all_patients/:id">
+          <PatientDetail />
+        </Route>
+      </Switch>
     </div>
     
   );
