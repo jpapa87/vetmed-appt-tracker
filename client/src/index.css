@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color:grey;
+  background-color:rgb(5, 5, 5);
+  font: white;
 }
 
 code {
@@ -16,13 +17,23 @@ code {
 .about-title {
   border: rgb(94, 96, 208) solid 1px;
   font-size: 60px;
-  color: #242222;
+  color: #7ad1d7;
   /* text-shadow: 2px 2px 1px rgb(247, 245, 245); */
   margin-top: 0;
 }
 
-.card {
-  display: center;
+.about-info {
+  color: #7ad1d7;
+
 }
+
+.card {
+  display: inline-flex;
+  justify-content: space-between;
+  background-color: rgb(94, 186, 225);
+
+}
+
+
 
 
