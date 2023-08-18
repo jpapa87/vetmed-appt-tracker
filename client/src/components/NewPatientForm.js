@@ -1,10 +1,12 @@
 import {useState} from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function NewPatientForm({addNewPatient}) {
     const [name, setName] = useState('')
     const [age, setAge] = useState('')
     const [species, setSpecies] = useState('')
+    const history = useHistory()
 
     function handleNameChange(e) {
         setName(e.target.value)   
@@ -25,7 +27,7 @@ function NewPatientForm({addNewPatient}) {
             age: age,
             species: species,
         }
-        fetch('/new_patient_form', {
+        fetch('/patients', {
             method: 'POST',
             headers: {'Content-Type': 'application/json',},
             body: JSON.stringify(NewPatientForm)
@@ -33,6 +35,7 @@ function NewPatientForm({addNewPatient}) {
             .then(r => r.json())
             .then(NewPatientForm => addNewPatient(NewPatientForm))
             e.target.reset()
+            history.push('/patients')
     }
 
     return(
@@ -65,7 +68,7 @@ function NewPatientForm({addNewPatient}) {
                 <input className="create-new"
                     type="submit"
                     name="submit"
-                    value="Create New Patient"
+                    value="Create New "
                 />
             </form>
         </div>

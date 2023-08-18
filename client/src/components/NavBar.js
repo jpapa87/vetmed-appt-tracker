@@ -27,7 +27,7 @@ function NavBar({user, setUser}) {
     // }
     return(
         <ul className="nav">
-            <li classname="nav-item">
+            <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">Home</Link>
             </li>
             <li className="nav-item">
@@ -37,11 +37,15 @@ function NavBar({user, setUser}) {
                 <Link className="nav-link" to="/new_patient_form">New Patient Form</Link>
             </li>
             <li className="nav-item">
+                <Link className="nav-link" to="/patients">Patients</Link>
+            </li>
+            <li className="nav-item">
                 <Link className="nav-link" to="/login">Login</Link>
             </li>
             <li className="nav-item">
                 <Link className="nav-link" to="/signup">Sign up</Link>
             </li>
+            
             {/* <li className="nav-item">
                 <Link className="nav-link disabled" to="#" tabindex="-1" aria-disabled="true">Disabled</Link>
             </li> */}

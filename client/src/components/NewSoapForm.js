@@ -1,4 +1,5 @@
 import {useState} from "react";
+import React from "react";
 
 
 function NewSoapForm({addNewSoap}) {
@@ -6,15 +7,15 @@ function NewSoapForm({addNewSoap}) {
     const [aliment, setAilment] = useState('')
     const [body, setBody] = useState('')
 
-    function handleNameChange(e) {
+    function handleName(e) {
         setName(e.target.value)   
     }
 
-    function handleAilmentChange(e) {
+    function handleAilment(e) {
         setAilment(e.target.value)
     }
 
-    function handleBodyChange(e) {
+    function handleBody(e) {
         setBody(e.target.value)
     }
 
@@ -37,37 +38,16 @@ function NewSoapForm({addNewSoap}) {
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
-                <label className="name">Name:
-                    <input
-                        type="text"
-                        name="name"
-                        onChange={handleNameChange}
-                    />
-                </label>
-                <br />
-                <label className="ailment">Ailment
-                    <input 
-                        type="text"
-                        name="ailment"
-                        onChange={handleAilmentChange}
-                    />
-                </label>
-                <br />
-                <label className="body">Body:
-                    <input 
-                        type="text"
-                        name="body"
-                        onChange={handleBodyChange}
-                    />
-                </label>
-                <br />
-                <input className="create-new"
-                    type="submit"
-                    name="submit"
-                    value="Create New Soap"
-                />
-            </form>
+            <h1>does this work?</h1>
+        <form onSubmit={handleSubmit}className="new-soap-form">
+            <input onChange={handleName}placeholder="name" />
+            <input onChange= {handleAilment}placeholder="ailment" />
+            <textarea 
+                onChange= {handleBody}
+                placeholder="Notes about the patient here..." rows={10} 
+            />
+            <input type="submit" value="Submit" />
+        </form>
         </div>
     )
 }

@@ -12,9 +12,11 @@ import Login from "./Login";
 
 function App() {
   const [vet , setVet] = useState (null)
+  const [patients , setPatients] = useState ([])
 
   useEffect(() => {
     fetchUser();
+    fetchPatients();
   }, [])
 
   const fetchUser = () => {
@@ -25,6 +27,16 @@ function App() {
     });
   };
   const updateVet = (vet) => setVet(vet);
+
+  const fetchPatients = () => {
+    fetch("/patients")
+    .then(r => r.json())
+    .then(patientsData => setPatients(patientsData))
+  }
+  
+  function addNewPatient(patient){
+    setPatients([...patients , patient])
+  }
 
   return (
   
@@ -42,15 +54,15 @@ function App() {
           <Login updateVet={updateVet}/>
         </Route>
         <Route path='/new_patient_form'>
-          <NewPatientForm />
+          <NewPatientForm addNewPatient={addNewPatient}/>
         </Route>
         <Route exact path= '/new_soap_form'> 
           <NewSoapForm NewSoapForm={NewSoapForm}/>
         </Route>
-        <Route path='/all_patients'>
-          <AllPatients />
+        <Route path='/patients'>
+          <AllPatients patients={patients}/>
         </Route>
-        <Route path="/all_patients/:id">
+        <Route path="/patients/:id">
           <PatientDetail />
         </Route>
       </Switch>

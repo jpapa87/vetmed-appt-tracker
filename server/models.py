@@ -65,15 +65,15 @@ class Vet(db.Model , SerializerMixin):
 #     patient = db.relationship('Patient', back_populates="soaps")
 
 
-# class Patient(db.Model , SerializerMixin):
-#     __tablename__ = 'patients'
+class Patient(db.Model , SerializerMixin):
+    __tablename__ = 'patients'
 
-#     id = db.Column(db.Integer , primary_key= True)
-#     name = db.Column(db.String)
-#     age = db.Column(db.Integer)
-#     species = db.Column(db.String)
+    id = db.Column(db.Integer , primary_key= True)
+    name = db.Column(db.String)
+    age = db.Column(db.Integer)
+    species = db.Column(db.String)
 
-#     soaps = db.relationship('Soap' , back_populates= 'patient')
-#     vet = association_proxy('soaps' , 'patient')
+    # soaps = db.relationship('Soap' , back_populates= 'patient')
+    # vet = association_proxy('soaps' , 'patient')
 
     # TODO serialize_rules = ('-', '-')

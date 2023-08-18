@@ -2,7 +2,7 @@
 from flask import request, make_response, session
 from flask_restful import Resource
 import ipdb
-from models import Vet
+from models import Vet , Patient
 
 # Local imports
 from config import app, db, api
@@ -63,6 +63,33 @@ def authorize():
 def logout():
     session['vet.id'] = None
     return make_response('' , 204)
+
+
+class Patients(Resource):
+    def get(self):
+        patients= [p.to_dict() for p in Patient.query.all()]
+        response= make_response(patients, 200)
+        return response
+
+
+    def post(self):
+        data = request.get_json()
+        try:
+            patient = Patient(
+                name = data['name'],
+                age = data['age'],
+                species= data['species'],
+            )
+        except ValueError as e:
+            response = make_response({"errors": [str(e)]}, 400)
+            return response
+
+        db.session.add(patient)
+        db.session.commit()
+
+        return make_response(patient.to_dict(), 201 )
+
+api.add_resource(Patients, '/patients')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

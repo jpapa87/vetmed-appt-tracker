@@ -8,25 +8,38 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import Vet , db
+from models import Vet , db , Patient
 
 if __name__ == '__main__':
     # fake = Faker()
     with app.app_context():
         print('Clearing database...')
         Vet.query.delete()
+        Patient.query.delete()
+        db.session.commit()
 
         print("Starting seed...")
         
 
-        print("Seeding users...")
-        #Users Seed
+        print("Seeding vets...")
+        #Vets Seed
         v1= Vet (name = 'Bowski', email = 'bowski@mail.com', password_hash = 'password' , specialty = 'Dermasurgery')
         v2 = Vet (name = 'Amyfree', email = 'amyfree@mail.com', password_hash = 'password', specialty= 'Ophthalmology')
         v3 = Vet (name = 'Jesspapa', email = 'jesspapa@mail.com', password_hash = 'password', specialty = 'Oncology')
 
         vets = [v1, v2, v3]
         db.session.add_all(vets)
+
+        print("Seeding patients...")
+        #Patients Seed
+        p1= Patient(name = "Potato" , age= "8" , species= "feline")
+        p2= Patient(name = "Buster Douglas" , age= "10" , species= "Canine")
+        p3= Patient(name = "Nala" , age= "9" , species= "Canine")
+
+        patients = [p1, p2, p3]
+
+        db.session.add_all(patients)
         db.session.commit()
+
 
         print("Done seeding")
