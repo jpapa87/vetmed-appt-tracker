@@ -1,6 +1,9 @@
 import {useState} from "react";
 import React from "react";
-
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 
 function NewSoapForm({addNewSoap}) {
     const [name, setName] = useState('')
@@ -38,7 +41,7 @@ function NewSoapForm({addNewSoap}) {
 
     return(
         <div>
-            <h1>does this work?</h1>
+            <h1>SOAP</h1>
         <form onSubmit={handleSubmit}className="new-soap-form">
             <input onChange={handleName}placeholder="name" />
             <input onChange= {handleAilment}placeholder="ailment" />
@@ -46,7 +49,8 @@ function NewSoapForm({addNewSoap}) {
                 onChange= {handleBody}
                 placeholder="Notes about the patient here..." rows={10} 
             />
-            <input type="submit" value="Submit" />
+            {/* <input type="submit" value="Submit" /> */}
+            <Button type= "submit" variant= "outline-success">Submit</Button>
         </form>
         </div>
     )

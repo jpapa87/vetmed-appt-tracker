@@ -1,9 +1,11 @@
 import { useHistory } from "react-router-dom";
 import {useFormik} from "formik";
 import * as yup from "yup";
+import { UserContext } from "../context/user";
+import { useContext } from "react";
 
-
-function SignUp({updateVet}){
+function SignUp(){
+    const {setUser} = useContext (UserContext)
     const history = useHistory()
     const formSchema = yup.object().shape({
         name: yup.string().required("Please enter a name."),
@@ -29,7 +31,7 @@ function SignUp({updateVet}){
         })
             .then((r) => {
                 if (r.ok) {
-                    r.json().then((vet) => {updateVet(vet);
+                    r.json().then((vet) => {setUser(vet);
                     history.push('/');
                     })
                 } else {

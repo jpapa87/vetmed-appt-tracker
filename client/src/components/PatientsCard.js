@@ -3,13 +3,13 @@ import { useState } from "react";
 
 function PatientsCard({name, age, species}) {
     return (
-    <div>
-        <h3>{name}</h3>
-        <p>{age}</p>
+    <div className="card" style={{width: "18rem"}}>
+        <img src="https://static.vecteezy.com/system/resources/previews/008/479/821/original/creative-illustration-of-a-veterinary-clinic-logo-vector.jpg" className="card-img-top" alt="..."/>
+        <h4>Name: {name}</h4>
+        <h4>Age: {age}</h4>
         <p>
-        <strong>{species}</strong>
+        <h4>Species: {species}</h4>
         </p>
-        {/* <button onClick={handleClick}>{click ? "got to party" : "party successful"}</button> */}
     </div>
     );
 }
