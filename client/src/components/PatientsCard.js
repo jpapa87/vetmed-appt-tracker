@@ -7,9 +7,8 @@ function PatientsCard({name, age, species}) {
         <img src="https://static.vecteezy.com/system/resources/previews/008/479/821/original/creative-illustration-of-a-veterinary-clinic-logo-vector.jpg" className="card-img-top" alt="..."/>
         <h4>Name: {name}</h4>
         <h4>Age: {age}</h4>
-        <p>
         <h4>Species: {species}</h4>
-        </p>
+        
     </div>
     );
 }

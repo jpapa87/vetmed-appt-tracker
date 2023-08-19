@@ -2,7 +2,7 @@
 from flask import request, make_response, session
 from flask_restful import Resource
 import ipdb
-from models import Vet , Patient
+from models import Vet , Patient , Soap
 
 # Local imports
 from config import app, db, api
@@ -90,6 +90,58 @@ class Patients(Resource):
         return make_response(patient.to_dict(), 201 )
 
 api.add_resource(Patients, '/patients')
+
+
+class Soaps(Resource):
+    def get(self):
+        soaps= [s.to_dict() for s in Soap.query.all()]
+        response= make_response(soaps, 200)
+        return response
+
+
+    def post(self):
+        data = request.get_json()
+        try:
+            soap = Soap(
+                ailment = data['ailment'],
+                body= data['body'],
+                created_at= data ["created_at"],
+                vet_id= data ["vet_id"],
+                patient_id= data ["patient_id"]
+            )
+        except ValueError as e:
+            response = make_response({"errors": [str(e)]}, 400)
+            return response
+
+        db.session.add(soap)
+        db.session.commit()
+
+        return make_response(soap.to_dict(), 201 )
+    
+api.add_resource(Soaps, '/soaps')
+
+class SoapById(Resource):
+    def patch(self, id):
+        soap = Soap.query.filter(Soap.id == id).first()
+        data = request.get_json()
+        for attr in data:
+            setattr(soap, attr, data[attr])
+        
+        db.session.commit()
+        response_dict = soap.to_dict()
+        response = make_response(response_dict, 200)
+        return response
+
+# DELETE /messages/<int:id>: deletes the soap from the database.
+    def delete(self, id):
+        soap = Soap.query.filter(Soap.id == id).first()
+        db.session.delete(soap)
+        db.session.commit()
+
+        response = make_response({} , 204)
+        return response
+    
+api.add_resource(SoapById, '/soaps/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

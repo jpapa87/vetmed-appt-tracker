@@ -6,7 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color:rgb(5, 5, 5);
-  font: white;
+  color: #7ad1d7;
+
 }
 
 code {
@@ -18,19 +19,20 @@ code {
   border: rgb(94, 96, 208) solid 1px;
   font-size: 60px;
   color: #7ad1d7;
-  /* text-shadow: 2px 2px 1px rgb(247, 245, 245); */
+  text-shadow: 2px 2px 1px rgb(247, 245, 245);
   margin-top: 0;
+  text-align: center;
 }
 
 .about-info {
   color: #7ad1d7;
-
+  text-align: center;
 }
 
 .card {
   display: inline-flex;
   justify-content: space-between;
-  background-color: rgb(94, 186, 225);
+  background-color: rgb(12, 33, 43);
 
 }
 

@@ -4,14 +4,16 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function NewSoapForm({addNewSoap}) {
-    const [name, setName] = useState('')
+    const [createdAt, setCreatedAt] = useState('')
     const [aliment, setAilment] = useState('')
     const [body, setBody] = useState('')
+    const history = useHistory()
 
-    function handleName(e) {
-        setName(e.target.value)   
+    function handleCreatedAt(e) {
+        setCreatedAt(e.target.value)   
     }
 
     function handleAilment(e) {
@@ -25,11 +27,11 @@ function NewSoapForm({addNewSoap}) {
     function handleSubmit(e) {
         e.preventDefault()
         const NewSoapForm = {
-            name: name,
+            created_at: createdAt,
             aliment: aliment,
             body: body,
         }
-        fetch('/new_soap_form', {
+        fetch('/soaps', {
             method: 'POST',
             headers: {'Content-Type': 'application/json',},
             body: JSON.stringify(NewSoapForm)
@@ -37,13 +39,14 @@ function NewSoapForm({addNewSoap}) {
             .then(r => r.json())
             .then(NewSoapForm => addNewSoap(NewSoapForm))
             e.target.reset()
+            history.push('/soaps')
     }
 
     return(
         <div>
-            <h1>SOAP</h1>
+            <h1>Create a new SOAP!</h1>
         <form onSubmit={handleSubmit}className="new-soap-form">
-            <input onChange={handleName}placeholder="name" />
+            <input onChange={handleCreatedAt}placeholder="created at" />
             <input onChange= {handleAilment}placeholder="ailment" />
             <textarea 
                 onChange= {handleBody}

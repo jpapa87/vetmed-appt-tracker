@@ -40,6 +40,9 @@ function NavBar({user, setUser}) {
                 <Link className="nav-link" to="/patients">Patients</Link>
             </li>
             <li className="nav-item">
+                <Link className="nav-link active" aria-current="page" to="/soaps">Soaps</Link>
+            </li>
+            <li className="nav-item">
                 <Link className="nav-link" to="/login">Login</Link>
             </li>
             <li className="nav-item">
