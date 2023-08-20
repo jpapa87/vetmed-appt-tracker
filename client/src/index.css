@@ -27,15 +27,20 @@ code {
 .about-info {
   color: #7ad1d7;
   text-align: center;
+  /* border: rgb(200, 9, 9) solid 1px; */
+  position: absolute;
+
 }
 
 .card {
   display: inline-flex;
-  justify-content: space-between;
+  /* justify-content:center; */
   background-color: rgb(12, 33, 43);
 
 }
 
-
+#home-page-img {
+  max-width: 30rem;
+}
 
 
