@@ -40,8 +40,8 @@ def login():
     try:
         vet = Vet.query.filter_by(name=data['name']).first()
         if vet.authenticate(data['password']):
-            session['vet.id'] = vet.id
-            response = make_response(vet.to_dict(), 200)
+            session['vet_id'] = vet.id
+            response = make_response(vet.to_dict(rules = ('-soaps.vet', '-soaps.patients')), 200)
             return response
         else: 
             return make_response({'error' :'name or password incorrect'}, 401)
@@ -52,7 +52,7 @@ def login():
 def authorize():
     try:
         vet = Vet.query.filter_by(id=session.get('vet.id')).first()
-        response = make_response(vet.to_dict(rules = ('-visits.user', '-visits.haunted_location', '-visits.experience')), 200)
+        response = make_response(vet.to_dict(rules = ('-soaps.vet', '-soaps,patients')), 200)
         return response
     except:
         return make_response({
@@ -61,7 +61,7 @@ def authorize():
 
 @app.route('/logout' , methods= ['DELETE'])
 def logout():
-    session['vet.id'] = None
+    session['vet_id'] = None
     return make_response('' , 204)
 
 
@@ -94,13 +94,14 @@ api.add_resource(Patients, '/patients')
 
 class Soaps(Resource):
     def get(self):
-        soaps= [s.to_dict() for s in Soap.query.all()]
+        soaps = [s.to_dict() for s in Soap.query.all()]
         response= make_response(soaps, 200)
         return response
 
 
     def post(self):
         data = request.get_json()
+
         try:
             new_soap = Soap(
                 ailment = data['ailment'],
@@ -109,8 +110,8 @@ class Soaps(Resource):
                 vet_id= data ["vet_id"],
                 patient_id= data ["patient_id"]
             )
-        except ValueError as e:
-            response = make_response({"errors": [str(e)]}, 400)
+        except:
+            response = make_response({'error': 'Invalid data.'}, 400)
             return response
 
         db.session.add(new_soap)
@@ -127,18 +128,34 @@ api.add_resource(Soaps, '/soaps')
 class SoapById(Resource):
     def patch(self, id):
         soap = Soap.query.filter_by(id=id).first()
+
+        if not soap:
+            response = make_response({'error': 'Experience not found'}, 404)
+            return response
+        
         data = request.get_json()
+
         for attr in data:
-            setattr(soap, attr, data[attr])
+            try:
+                setattr(soap, attr, data[attr])
+            except ValueError as e:
+                response = make_response({"errors": [str(e)]})
+    
         
         db.session.commit()
-        response_dict = soap.to_dict()
-        response = make_response(response_dict, 200)
+
+        soap_dict = soap.to_dict()
+        response = make_response(soap_dict, 200)
         return response
 
 # DELETE: deletes the soap from the database.
     def delete(self, id):
         soap = Soap.query.filter_by(id=id).first()
+
+        if not soap:
+            response = make_response({'error': 'Experience not found'}, 404)
+            return response
+
         db.session.delete(soap)
         db.session.commit()
 

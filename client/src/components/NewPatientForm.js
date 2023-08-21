@@ -39,7 +39,8 @@ function NewPatientForm({addNewPatient}) {
     }
 
     return(
-        <div>
+        <div className="text-center"> 
+            <h1> Create a new patient! </h1>
             <form onSubmit={handleSubmit}>
                 <label className="name">Name:
                     <input

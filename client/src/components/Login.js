@@ -33,7 +33,7 @@ function Login(){
                     history.push('/');
                     })
                 } else {
-                    console.log("Bunny Fitch")
+                    // console.log("Bunny Fitch")
                 }
             })
         },

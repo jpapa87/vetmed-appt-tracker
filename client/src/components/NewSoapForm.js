@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function NewSoapForm({addNewSoap}) {
     const [createdAt, setCreatedAt] = useState('')
-    const [aliment, setAilment] = useState('')
+    const [ailment, setAilment] = useState('')
     const [body, setBody] = useState('')
     const history = useHistory()
 
@@ -28,8 +28,10 @@ function NewSoapForm({addNewSoap}) {
         e.preventDefault()
         const NewSoapForm = {
             created_at: createdAt,
-            aliment: aliment,
+            ailment: ailment,
             body: body,
+            vet_id: 1  ,
+            patient_id: 1
         }
         fetch('/soaps', {
             method: 'POST',
