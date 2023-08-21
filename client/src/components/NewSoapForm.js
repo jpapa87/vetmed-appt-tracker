@@ -5,12 +5,16 @@ import Button from "react-bootstrap/Button"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useContext } from "react";
+import { UserContext } from "../context/user";
 
 function NewSoapForm({addNewSoap}) {
     const [createdAt, setCreatedAt] = useState('')
     const [ailment, setAilment] = useState('')
     const [body, setBody] = useState('')
     const history = useHistory()
+    const {user} = useContext(UserContext)
+
 
     function handleCreatedAt(e) {
         setCreatedAt(e.target.value)   
@@ -30,7 +34,7 @@ function NewSoapForm({addNewSoap}) {
             created_at: createdAt,
             ailment: ailment,
             body: body,
-            vet_id: 1  ,
+            vet_id: user.id,
             patient_id: 1
         }
         fetch('/soaps', {

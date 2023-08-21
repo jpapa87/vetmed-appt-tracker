@@ -10,6 +10,7 @@ function SoapsCard({ ailment, body, created_at, vet_id, patient_id}) {
         <h4>Created At: {created_at}</h4>
         <h4>Assesment: {body}</h4>
     </div>
+    
     );
 }
 
