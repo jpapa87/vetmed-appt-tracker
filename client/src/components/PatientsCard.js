@@ -8,7 +8,6 @@ function PatientsCard({name, age, species}) {
         <h4>Name: {name}</h4>
         <h4>Age: {age}</h4>
         <h4>Species: {species}</h4>
-        
     </div>
     );
 }

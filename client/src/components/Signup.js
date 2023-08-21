@@ -73,7 +73,7 @@ function SignUp(){
                 value={formik.values.specialty}
                 onChange={formik.handleChange}
             />
-            <input type="submit" value="SignUp" />
+            <input type="submit" value="SignUp" variant="outline" />
         </form>
     </>
 )

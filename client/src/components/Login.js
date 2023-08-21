@@ -42,7 +42,7 @@ function Login(){
     return (
     <>
         <h1> Login Here! </h1>
-        <form onSubmit= {formik.handleSubmit}>
+        <form className="text-center" onSubmit= {formik.handleSubmit}>
             <label>Username</label>
             <input 
                 type="text"

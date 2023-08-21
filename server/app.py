@@ -52,7 +52,7 @@ def login():
 def authorize():
     try:
         vet = Vet.query.filter_by(id=session.get('vet.id')).first()
-        response = make_response(vet.to_dict(), 200)
+        response = make_response(vet.to_dict(rules = ('-visits.user', '-visits.haunted_location', '-visits.experience')), 200)
         return response
     except:
         return make_response({
@@ -102,7 +102,7 @@ class Soaps(Resource):
     def post(self):
         data = request.get_json()
         try:
-            soap = Soap(
+            new_soap = Soap(
                 ailment = data['ailment'],
                 body= data['body'],
                 created_at= data ["created_at"],
@@ -113,16 +113,20 @@ class Soaps(Resource):
             response = make_response({"errors": [str(e)]}, 400)
             return response
 
-        db.session.add(soap)
+        db.session.add(new_soap)
         db.session.commit()
 
-        return make_response(soap.to_dict(), 201 )
+        soap_dict = new_soap.to_dict()
+        response = make_response(soap_dict, 201)
+        return response
+
+        # return make_response(new_soap.to_dict(), 201 )
     
 api.add_resource(Soaps, '/soaps')
 
 class SoapById(Resource):
     def patch(self, id):
-        soap = Soap.query.filter(Soap.id == id).first()
+        soap = Soap.query.filter_by(id=id).first()
         data = request.get_json()
         for attr in data:
             setattr(soap, attr, data[attr])
@@ -132,9 +136,9 @@ class SoapById(Resource):
         response = make_response(response_dict, 200)
         return response
 
-# DELETE /messages/<int:id>: deletes the soap from the database.
+# DELETE: deletes the soap from the database.
     def delete(self, id):
-        soap = Soap.query.filter(Soap.id == id).first()
+        soap = Soap.query.filter_by(id=id).first()
         db.session.delete(soap)
         db.session.commit()
 

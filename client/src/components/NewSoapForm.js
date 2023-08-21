@@ -43,12 +43,12 @@ function NewSoapForm({addNewSoap}) {
     }
 
     return(
-        <div>
+        <div className="text-center">
             <h1>Create a new SOAP!</h1>
         <form onSubmit={handleSubmit}className="new-soap-form">
             <input onChange={handleCreatedAt}placeholder="created at" />
             <input onChange= {handleAilment}placeholder="ailment" />
-            <textarea 
+            <textarea  
                 onChange= {handleBody}
                 placeholder="Notes about the patient here..." rows={10} 
             />
