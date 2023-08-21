@@ -52,6 +52,17 @@ function App() {
     setSoaps([...soaps , soap])
   }
 
+  function deleteSoap(id) {
+    fetch(`/soaps/${id}` , {
+      method: "DELETE"
+    })
+    setSoaps(soaps.filter(soap=> soap.id !== id ))
+  }
+
+  function deletePatient(id) {
+    setPatients(patients.filter(patient=> patient.id !== id ))
+  }
+
   return (
   
     <div className="App">
@@ -74,10 +85,10 @@ function App() {
           <NewSoapForm addNewSoap={addNewSoap}/>
         </Route>
         <Route path='/patients'>
-          <AllPatients patients={patients}/>
+          <AllPatients patients={patients} deletePatient={deletePatient}/>
         </Route>
         <Route path='/soaps'>
-          <AllSoaps soaps={soaps}/>
+          <AllSoaps soaps={soaps} deleteSoap={deleteSoap}/>
         </Route>
       </Switch>
     </div>
