@@ -18,13 +18,13 @@ class Vet(db.Model , SerializerMixin):
     email = db.Column(db.String)
     
 
-    # soaps = db.relationship('Soap' , back_populates= 'vet', cascade='all, delete-orphan')
-    # patients = association_proxy('soaps' , 'patient')
+    soaps = db.relationship('Soap' , back_populates= 'vet', cascade='all, delete-orphan')
+    patients = association_proxy('soaps' , 'patient')
 
 
     _password_hash = db.Column(db.String)
 
-    serialize_rules= ("-_password_hash",)
+    serialize_rules= ("-_password_hash", "-soaps.vet")
 
     @property
     def password_hash(self):
@@ -49,31 +49,33 @@ class Vet(db.Model , SerializerMixin):
         )
 
 
-# class Soap(db.Model, SerializerMixin):
-#     __tablename__ = 'soaps'
+class Soap(db.Model, SerializerMixin):
+    __tablename__ = 'soaps'
 
-#     id = db.Column(db.Integer , primary_key= True)
-#     ailment = db.Column(db.String)
-#     body = db.Column(db.String)
-#     created_at = db.Column(db.DateTime, server_default=db.func.now())
+    id = db.Column(db.Integer , primary_key= True)
+    ailment = db.Column(db.String)
+    body = db.Column(db.String)
+    created_at = db.Column(db.String)
 
-#     vet_id = db.Column(db.Integer , db.ForeignKey('vets.id'))
-#     patient_id = db.Column(db.Integer , db.ForeignKey('patients.id'))
-
-
-#     vet = db.relationship('Vet', back_populates='soaps')
-#     patient = db.relationship('Patient', back_populates="soaps")
+    vet_id = db.Column(db.Integer , db.ForeignKey('vets.id'))
+    patient_id = db.Column(db.Integer , db.ForeignKey('patients.id'))
 
 
-# class Patient(db.Model , SerializerMixin):
-#     __tablename__ = 'patients'
+    vet = db.relationship('Vet', back_populates='soaps')
+    patient = db.relationship('Patient', back_populates="soaps")
 
-#     id = db.Column(db.Integer , primary_key= True)
-#     name = db.Column(db.String)
-#     age = db.Column(db.Integer)
-#     species = db.Column(db.String)
+    serialize_rules = ("-vet.soaps", "-patient.soaps")
 
-#     soaps = db.relationship('Soap' , back_populates= 'patient')
-#     vet = association_proxy('soaps' , 'patient')
 
-    # TODO serialize_rules = ('-', '-')
+class Patient(db.Model , SerializerMixin):
+    __tablename__ = 'patients'
+
+    id = db.Column(db.Integer , primary_key= True)
+    name = db.Column(db.String)
+    age = db.Column(db.Integer)
+    species = db.Column(db.String)
+
+    soaps = db.relationship('Soap' , back_populates= 'patient')
+    vets = association_proxy('soaps' , 'vet')
+
+    serialize_rules = ('-soaps.patient',)
