@@ -3,10 +3,12 @@ import {useFormik} from "formik";
 import * as yup from "yup";
 import { UserContext } from "../context/user";
 import { useContext } from "react";
+import { useState } from "react";
 
 
 function Login(){
     const {setUser} = useContext (UserContext)
+    const [errors , setErrors] = useState([])
     const history = useHistory()
     const formSchema = yup.object().shape({
         name: yup.string().required("Please enter a name."),
@@ -29,11 +31,12 @@ function Login(){
         })
             .then((r) => {
                 if (r.ok) {
-                    r.json().then((vet) => {setUser(vet);
-                    history.push('/');
+                    r.json().then((vet) => {setUser(vet)
+                        history.push('/')
                     })
-                } else {
-                    // console.log("Bunny Fitch")
+                }
+                else {
+                    r.json().then((errorMessage) => setErrors(errorMessage.errors))
                 }
             })
         },
@@ -58,6 +61,12 @@ function Login(){
                 onChange={formik.handleChange}
             />
             <input type="submit" value="Sign in " />
+            {errors.length > 0
+            ? errors.map((errorMessage)=> (
+                <div key= {errorMessage}>
+                    {errorMessage }
+                </div>
+            )) : null}
         </form>
     </>
 )
