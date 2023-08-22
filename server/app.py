@@ -44,9 +44,9 @@ def login():
             response = make_response(vet.to_dict(rules = ('-soaps.vet', '-soaps.patients')), 200)
             return response
         else: 
-            return make_response({'error' :'name or password incorrect'}, 401)
+            return make_response({'errors' :['password incorrect']}, 422)
     except:
-        return make_response({'error': 'name or password incorrect'}, 401)
+        return make_response({'errors': ['name incorrect']}, 422)
     
 @app.route('/authorized' , methods=['GET'])
 def authorize():
