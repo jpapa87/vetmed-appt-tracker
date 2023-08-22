@@ -44,10 +44,10 @@ class Vet(db.Model , SerializerMixin):
             self._password_hash,
             password.encode('utf-8')
         )
-    @validates('username')
-    def validate_username(self, key, new_username):
-        if type(new_username) is str and len(new_username) >= 3:
-            return new_username
+    @validates('name')
+    def validate_name(self, key, new_name):
+        if type(new_name) is str and len(new_name) >= 3:
+            return new_name
         else:
             raise ValueError("Username must be 3 or more characters")
     

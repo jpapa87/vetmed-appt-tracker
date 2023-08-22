@@ -82,7 +82,7 @@ function App() {
           <NewPatientForm addNewPatient={addNewPatient}/>
         </Route>
         <Route exact path= '/new_soap_form'> 
-          <NewSoapForm addNewSoap={addNewSoap}/>
+          <NewSoapForm addNewSoap={addNewSoap} patients={patients}/>
         </Route>
         <Route path='/patients'>
           <AllPatients patients={patients} deletePatient={deletePatient}/>

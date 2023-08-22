@@ -51,7 +51,7 @@ def login():
 @app.route('/authorized' , methods=['GET'])
 def authorize():
     try:
-        vet = Vet.query.filter_by(id=session.get('vet.id')).first()
+        vet = Vet.query.filter_by(id=session.get('vet_id')).first()
         response = make_response(vet.to_dict(rules = ('-soaps.vet', '-soaps,patients')), 200)
         return response
     except:
@@ -61,7 +61,7 @@ def authorize():
 
 @app.route('/logout' , methods= ['DELETE'])
 def logout():
-    session['vet_id'] = None
+    session.pop("vet_id")
     return make_response('' , 204)
 
 
@@ -94,7 +94,7 @@ api.add_resource(Patients, '/patients')
 
 class Soaps(Resource):
     def get(self):
-        soaps = [s.to_dict() for s in Soap.query.all()]
+        soaps = [s.to_dict() for s in Soap.query.filter_by(vet_id= session.get("vet_id"))]
         response= make_response(soaps, 200)
         return response
 
@@ -106,9 +106,9 @@ class Soaps(Resource):
             new_soap = Soap(
                 ailment = data['ailment'],
                 body= data['body'],
-                created_at= data ["created_at"],
-                vet_id= data ["vet_id"],
-                patient_id= data ["patient_id"]
+                created_at= data["created_at"],
+                vet_id= session["vet_id"],
+                patient_id= data["patient_id"]
             )
         except:
             response = make_response({'error': 'Invalid data.'}, 400)
