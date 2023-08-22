@@ -1,7 +1,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
 from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
-from sqlalchemy.orm import validates
+from sqlalchemy.orm import validates 
 
 
 from config import db, bcrypt
@@ -32,21 +32,31 @@ class Vet(db.Model , SerializerMixin):
     
     
     @password_hash.setter
-    def password_hash(self, new_password_string):
+    def password_hash(self, new_password):
 
-        plain_byte_obj = new_password_string.encode("utf-8")
+        byte_object = new_password.encode("utf-8")
+        encrypted_hash_object = bcrypt.generate_password_hash(byte_object)
+        hash_object = encrypted_hash_object.decode('utf-8')
+        self._password_hash = hash_object
 
-        encrypted_hash_object = bcrypt.generate_password_hash(plain_byte_obj)
-
-        hash_object_as_string = encrypted_hash_object.decode('utf-8')
-
-        self._password_hash = hash_object_as_string
-
-    def authenticate(self , some_string):
+    def authenticate(self , password):
         return bcrypt.check_password_hash(
             self._password_hash,
-            some_string.encode('utf-8')
+            password.encode('utf-8')
         )
+    @validates('name')
+    def validate_name(self, key, new_name):
+        if type(new_name) is str and len(new_name) >= 3:
+            return new_name
+        else:
+            raise ValueError("Username must be 3 or more characters")
+    
+    @validates('email')
+    def validate_new_email(self, key, new_email):
+        if type(new_email) is str and "@" in new_email:
+            return new_email
+        else:
+            raise ValueError("Email is invalid, must include '@'.")
 
 
 class Soap(db.Model, SerializerMixin):

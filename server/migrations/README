@@ -1,1 +1,60 @@
-Single-database configuration for Flask.
+
+Veterinary Clinic Management System
+
+Welcome to the Veterinary Clinic Management System! 
+
+This application is designed to streamline the management of patient records and SOAP (Subjective, Objective, Assessment, Plan) notes for veterinarians. 
+
+Whether you're a seasoned veterinarian or just starting your practice, this system will assist you in efficiently handling patient information and providing top-notch care.
+
+To get started with the Veterinary Clinic Management System, follow these steps:
+
+Clone this repository to your local machine using:
+
+shell
+Copy code
+git clone https://github.com/your-username/vet-clinic-system.git
+Install the necessary dependencies:
+
+shell
+Copy code
+npm install
+Usage
+Start the application:
+
+shell
+Copy code
+npm start
+Open your web browser and navigate to http://localhost:3000 to access the application.
+
+Features:
+
+User Authentication
+Veterinarians can securely log in or sign up to access the system.
+Authentication ensures that only authorized users can access patient records and perform actions.
+
+Home Page:
+Upon successful login, veterinarians are directed to the Dashboard/Home Page.
+The Dashboard provides an overview of recent activities and important notifications.
+
+Patient Details:
+Veterinarians can select a patient from the list and view comprehensive details about the patient's medical history.
+Patient details include information such as age, breed, and any relevant notes.
+
+SOAP Actions:
+The system enables veterinarians to perform all CRUD (Create, Read, Update, Delete) actions on SOAP notes.
+SOAP (Subjective, Objective, Assessment, Plan) notes are essential for recording and tracking patient health progress.
+
+Logout:
+Veterinarians can easily log out of the system by clicking the Logout button.
+Logging out ensures the security of patient data and prevents unauthorized access.
+
+Contributing
+Contributions are welcomed from the community to enhance the Veterinary Clinic Management System. 
+
+To contribute, follow these steps:
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Make your changes and commit them.
+Push your changes to your fork.
+Submit a pull request describing your changes.
