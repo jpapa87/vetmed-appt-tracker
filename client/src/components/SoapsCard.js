@@ -7,7 +7,7 @@ function SoapsCard({ ailment, body, created_at, vet_id, patient_id, id, deleteSo
     const [newBody , setNewBody] = useState (body)
 
     const editForm = (
-        <form onSubmit={handleSubmit}className="new-soap-form">
+        <form onSubmit={handleSubmit}>
             <textarea  
                 onChange= {handleBody}
                 placeholder="Notes about the patient here..." value= {newBody} rows={10} 

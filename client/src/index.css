@@ -33,11 +33,24 @@ code {
 }
 
 .card {
-  display: inline-flex;
-  /* justify-content:center; */
   background-color: rgb(12, 33, 43);
-
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
 }
+
+.new-pt-form {
+  background-color: rgb(12, 33, 43);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .new-soap-form {
+  background-color: rgb(12, 33, 43);
+  padding: 20px;
+  justify-content: space-evenly;
+} */
 
 #home-page-img {
   max-width: 30rem;

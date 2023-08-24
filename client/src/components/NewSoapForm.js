@@ -61,16 +61,18 @@ function NewSoapForm({addNewSoap, patients}) {
     }
 
     return(
-        <div className="text-center" form-control>
+        <div>
             <h1>Create a new SOAP!</h1>
-        <form onSubmit={handleSubmit}className="new-soap-form">
+        <form  className="card align-items"onSubmit={handleSubmit}>
             <select onChange={handlePatientId} defaultValue={patients[0]?.id}>
                 {patients.map(patient => (
                     <option key={patient.id} value={patient.id}>{patient.name}</option>
                 ))}</select>            
-            <input onChange={handleCreatedAt}placeholder="created at" />
-            <input onChange= {handleAilment}placeholder="ailment" />
-            <textarea  
+            <input 
+                onChange={handleCreatedAt}placeholder="Date: MM/DD/YY" />
+            <input 
+                onChange= {handleAilment}placeholder="Ailment" />
+            <textarea
                 onChange= {handleBody}
                 placeholder="Notes about the patient here..." rows={10} 
             />

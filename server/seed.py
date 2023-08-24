@@ -43,9 +43,9 @@ if __name__ == '__main__':
         db.session.commit()
 
         #Soap Seed
-        s1= Soap( name= "Potato" , ailment= "broken nail" , body= "Potato presents with a broken toenail, area was shaved cleaned and nail was trimmed. PT is BAR and a recheck is recommeneded in 1 week" , created_at= "10/31/22" , vet_id= 1 , patient_id= 1)
-        s2= Soap( name= "Buster" , ailment= "vomitting" , body= "Buster was assesesd for vomiting. PT is BAR, suggest bland diet. Sent home with Cerenia, if vomitting continues please recheck with your primary vet." , created_at= "10/31/22" , vet_id= 2 , patient_id= 2)
-        s3= Soap( name= "Nala" , ailment= "diarrhea" , body= "Nala has been having episodes of diarrhea, she is otherwise healthy. PT is BAR, vitals are normal. Suggest a bland diet and sent home with Metronidozole." , created_at= "10/31/22" , vet_id= 3 , patient_id= 3)
+        s1= Soap( ailment= "broken nail" , body= "Potato presents with a broken toenail, area was shaved cleaned and nail was trimmed. PT is BAR and a recheck is recommeneded in 1 week" , created_at= "10/31/22" , vet_id= 1 , patient_id= 1)
+        s2= Soap( ailment= "vomitting" , body= "Buster was assesesd for vomiting. PT is BAR, suggest bland diet. Sent home with Cerenia, if vomitting continues please recheck with your primary vet." , created_at= "10/31/22" , vet_id= 2 , patient_id= 2)
+        s3= Soap( ailment= "diarrhea" , body= "Nala has been having episodes of diarrhea, she is otherwise healthy. PT is BAR, vitals are normal. Suggest a bland diet and sent home with Metronidozole." , created_at= "10/31/22" , vet_id= 3 , patient_id= 3)
 
         soaps = [s1, s2, s3]
 
