@@ -32,12 +32,69 @@ code {
 
 }
 
-.card {
-  display: inline-flex;
-  /* justify-content:center; */
-  background-color: rgb(12, 33, 43);
-
+.patient-card {
+  text-align: center;
+  border: #5f506b solid 1px;
+  padding: 1rem;
+  width: 20rem;
+  height: 30rem;
+  display: center;
+  margin: 1rem 2rem;
+  box-shadow: 2px 2px 5px 2px #5f506b;
 }
+
+.soaps-card {
+  text-align: center;
+  border: #5f506b solid 1px;
+  padding: 1rem;
+  width: 20rem;
+  height: 30rem;
+  display: center;
+  margin: 1rem 2rem;
+  box-shadow: 2px 2px 5px 2px #5f506b;
+}
+
+#soaps-container {
+  /* border: rgb(232, 7, 7) solid 10px; */
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.form-control {
+  background-color: black;
+}
+
+.form-group {
+  border: #5ca9af solid 4px;
+  width: 800px;
+}
+
+#patients-container {
+  /* border: rgb(232, 7, 7) solid 10px; */
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+/* background-color: rgb(12, 33, 43);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between; */
+
+
+.new-pt-form {
+  background-color: rgb(12, 33, 43);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .new-soap-form {
+  background-color: rgb(12, 33, 43);
+  padding: 20px;
+  justify-content: space-evenly;
+} */
 
 #home-page-img {
   max-width: 30rem;

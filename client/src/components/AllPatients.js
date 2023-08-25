@@ -2,7 +2,7 @@
 import PatientsCard from "./PatientsCard"
 import Button from "react-bootstrap/esm/Button"
 
-function AllPatients({patients, deletePatient, id}) {
+function AllPatients({patients}) {
     const eachPatients = patients.map((patient)=> {
     return(
         <PatientsCard
@@ -14,15 +14,13 @@ function AllPatients({patients, deletePatient, id}) {
     )
     })
 
-    function handleDelete() {
-        deletePatient(id)
-    }
+    
 
     return (
-    <div id="patients">
+    <div id="patients-container">
         {eachPatients}
         {/* <button className="del-btn" onClick={handleDelete}>Delete Soap</button> */}
-        <Button type= "submit" variant= "outline-success">Delete a patient</Button>
+        {/* <Button type= "submit" variant= "outline-success">Delete a patient</Button> */}
 
     </div>
     );

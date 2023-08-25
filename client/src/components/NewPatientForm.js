@@ -41,16 +41,16 @@ function NewPatientForm({addNewPatient}) {
     return(
         <div className="text-center"> 
             <h1> Create a new patient! </h1>
-            <form onSubmit={handleSubmit}>
+            <form className='d-flex justify-content-center' onSubmit={handleSubmit}>
                 <label className="name">Name:
-                    <input
+                        <input
                         type="text"
                         name="name"
                         onChange={handleNameChange}
                     />
                 </label>
                 <br />
-                <label className="age">age
+                <label className="age">Age:
                     <input 
                         type="text"
                         name="age"
@@ -58,7 +58,7 @@ function NewPatientForm({addNewPatient}) {
                     />
                 </label>
                 <br />
-                <label className="species">Species:
+                <label className="species">Species/Breed:
                     <input 
                         type="text"
                         name="species"
