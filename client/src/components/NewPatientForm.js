@@ -41,9 +41,9 @@ function NewPatientForm({addNewPatient}) {
     return(
         <div className="text-center"> 
             <h1> Create a new patient! </h1>
-            <form className="new-pt-form" onSubmit={handleSubmit}>
+            <form className='d-flex justify-content-center' onSubmit={handleSubmit}>
                 <label className="name">Name:
-                    <input
+                        <input
                         type="text"
                         name="name"
                         onChange={handleNameChange}

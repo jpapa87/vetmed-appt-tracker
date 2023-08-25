@@ -17,7 +17,7 @@ function AllPatients({patients}) {
     
 
     return (
-    <div id="patients">
+    <div id="patients-container">
         {eachPatients}
         {/* <button className="del-btn" onClick={handleDelete}>Delete Soap</button> */}
         {/* <Button type= "submit" variant= "outline-success">Delete a patient</Button> */}

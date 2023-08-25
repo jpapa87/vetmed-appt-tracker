@@ -63,22 +63,33 @@ function NewSoapForm({addNewSoap, patients}) {
     return(
         <div>
             <h1>Create a new SOAP!</h1>
-        <form  className="card align-items"onSubmit={handleSubmit}>
-            <select onChange={handlePatientId} defaultValue={patients[0]?.id}>
-                {patients.map(patient => (
-                    <option key={patient.id} value={patient.id}>{patient.name}</option>
-                ))}</select>            
-            <input 
-                onChange={handleCreatedAt}placeholder="Date: MM/DD/YY" />
-            <input 
-                onChange= {handleAilment}placeholder="Ailment" />
-            <textarea
-                onChange= {handleBody}
-                placeholder="Notes about the patient here..." rows={10} 
-            />
-            {/* <input type="submit" value="Submit" /> */}
-            <Button type= "submit" variant= "outline-success">Submit</Button>
-        </form>
+            <div className='d-flex justify-content-center'>
+                <form onSubmit={handleSubmit}>
+                    <div> 
+                        <select onChange={handlePatientId} defaultValue={patients[0]?.id}>
+                            {patients.map(patient => (
+                                <option key={patient.id} value={patient.id}>{patient.name}</option>
+                            ))}
+                        </select> 
+                    </div>              
+                    <div className="form-group">  
+                        <input className='form-control'
+                        onChange={handleCreatedAt}placeholder="Date: MM/DD/YY" />
+                    </div>
+                    <div className="form-group">  
+                        <input className='form-control'
+                        onChange= {handleAilment}placeholder="Ailment" />
+                    </div>  
+                    <div className="form-group">  
+                        <textarea className='form-control'
+                        onChange= {handleBody}
+                        placeholder="Notes about the patient here..." rows={10} 
+                    />
+                    </div> 
+                    {/* <input type="submit" value="Submit" /> */}
+                    <Button type= "submit" variant= "outline-success">Submit</Button>
+                </form>
+            </div>
         </div>
     )
 }
