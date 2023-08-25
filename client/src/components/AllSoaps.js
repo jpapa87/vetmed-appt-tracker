@@ -7,13 +7,14 @@ function AllSoaps({soaps, deleteSoap}) {
     return(
         <SoapsCard
         key={soap.id}
-        name = {soap.name}
-        ailment= {soap.ailment}
-        body= {soap.body}
-        created_at={soap.created_at}
-        vet_id={soap.vet_id}
-        patient_id={soap.patient_id}
-        id = {soap.id}
+        soap= {soap}
+        // name = {soap.name}
+        // ailment= {soap.ailment}
+        // body= {soap.body}
+        // created_at={soap.created_at}
+        // vet_id={soap.vet_id}
+        // patient_id={soap.patient_id}
+        // id = {soap.id}
         deleteSoap = {deleteSoap}
         />
     )
