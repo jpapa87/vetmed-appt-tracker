@@ -21,7 +21,7 @@ class Vets(Resource):
                 specialty = data['specialty']
             )
         except ValueError as e:
-            response = make_response({"errors": [str(e)]}, 400)
+            response = make_response({"errors": str(e)}, 422)
             return response
 
         db.session.add(vet)
@@ -52,12 +52,14 @@ def login():
 def authorize():
     try:
         vet = Vet.query.filter_by(id=session.get('vet_id')).first()
-        response = make_response(vet.to_dict(rules = ('-soaps.vet', '-soaps,patients')), 200)
+        # ipdb.set_trace()
+        response = make_response(vet.to_dict(), 200)
         return response
     except:
         return make_response({
             "error" : "User not found"
         }, 404)
+    # rules = ('-soaps.vet', '-soaps,patients')
 
 @app.route('/logout' , methods= ['DELETE'])
 def logout():

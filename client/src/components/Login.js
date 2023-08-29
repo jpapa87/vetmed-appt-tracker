@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { useState } from "react";
 
 
-function Login(){
+function Login({fetchSoaps}){
     const {setUser} = useContext (UserContext)
     const [errors , setErrors] = useState([])
     const history = useHistory()
@@ -32,6 +32,7 @@ function Login(){
             .then((r) => {
                 if (r.ok) {
                     r.json().then((vet) => {setUser(vet)
+                        fetchSoaps()
                         history.push('/')
                     })
                 }
@@ -44,7 +45,7 @@ function Login(){
     // console.log(formik.values.name)
     return (
     <>
-        <h1> Login Here! </h1>
+        <h1 className="text-center"> Login Here! </h1>
         <form className="text-center" onSubmit= {formik.handleSubmit}>
             <label>Username</label>
             <input 
@@ -68,6 +69,7 @@ function Login(){
                 </div>
             )) : null}
         </form>
+        <img className="img-fluid m-10" src= "../assets/marissa.jpeg" alt= "Background" id="login-img"/>
     </>
 )
 }
