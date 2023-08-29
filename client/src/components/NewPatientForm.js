@@ -72,6 +72,7 @@ function NewPatientForm({addNewPatient}) {
                     value="Create New "
                 />
             </form>
+            <img className="img-fluid m-0" src= "../assets/potato.jpg" alt= "Background" id="new-pt-img"/>
         </div>
     )
 }

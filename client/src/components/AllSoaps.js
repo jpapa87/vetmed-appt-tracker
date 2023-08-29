@@ -24,7 +24,7 @@ function AllSoaps({soaps, deleteSoap}) {
     // }
 
     return (
-    <div id="soaps-container">
+    <div id="soaps-container" className="border">
         {eachsoaps}
         {/* <button className="del-btn" onClick={handleDelete}>Delete Soap</button> */}
     </div>

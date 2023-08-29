@@ -62,7 +62,7 @@ function NewSoapForm({addNewSoap, patients}) {
 
     return(
         <div>
-            <h1>Create a new SOAP!</h1>
+            <h1 className="text-center">Create a new SOAP!</h1>
             <div className='d-flex justify-content-center'>
                 <form onSubmit={handleSubmit}>
                     <div> 
@@ -89,6 +89,7 @@ function NewSoapForm({addNewSoap, patients}) {
                     {/* <input type="submit" value="Submit" /> */}
                     <Button type= "submit" variant= "outline-success">Submit</Button>
                 </form>
+                <img className="img-fluid m-0" src= "../assets/chemo.jpeg" alt= "Background" id="home-page-img"/>
             </div>
         </div>
     )

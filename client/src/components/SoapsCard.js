@@ -40,16 +40,16 @@ function SoapsCard({deleteSoap , soap }) {
 
 
     return (
-    <div className="soaps-card" >
+    <div className="soaps-card" > <h2>Current SOAPs:</h2>
         <h4>Ailment: {ailment}</h4>
         <h4>Vet: {soap.vet.name}</h4>
         <h4>Patient: {soap.patient.name}</h4>
         <h4>Created At: {created_at}</h4>
         { beingEdited ? editForm : <h4>Assesment: {newBody}</h4> } 
         { user.id === soap.vet_id ?
-        <Button type= "submit" onClick={() => deleteSoap(id)} variant= "outline-success">Delete a SOAP</Button> : null}
+        <Button className="delete-button" type= "submit" onClick={() => deleteSoap(id)} variant= "outline-success">Delete a SOAP</Button> : null}
         { user.id === soap.vet_id ?
-        <Button type= "submit"  onClick={() => setBeingEdited(true)} variant= "outline-success">Edit this SOAP</Button> : null}
+        <Button className="edit-button" type= "submit"  onClick={() => setBeingEdited(true)} variant= "outline-success">Edit this SOAP</Button> : null}
     </div>
     
     );

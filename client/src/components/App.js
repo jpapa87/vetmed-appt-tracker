@@ -28,6 +28,11 @@ function App() {
       if (resp.ok) {
         resp.json().then((vet) => setUser(vet));
       }
+      else {
+        console.log("boobies")
+      }
+
+
     });
   };
   // const updateVet = (vet) => setVet(vet);
@@ -66,7 +71,7 @@ function App() {
   return (
   
     <div className="App">
-      <h1>VetNotes</h1>
+      <h1 className="text-center" id="app-title">VetNotes: Create SOAPs with ease!</h1>
       <NavBar />
       <Switch>
         <Route exact path='/'>
@@ -76,7 +81,7 @@ function App() {
           <SignUp />
         </Route>
         <Route path='/login'>
-          <Login />
+          <Login fetchSoaps={fetchSoaps} />
         </Route>
         <Route path='/new_patient_form'>
           <NewPatientForm addNewPatient={addNewPatient}/>
