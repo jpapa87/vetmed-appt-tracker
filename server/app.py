@@ -27,7 +27,7 @@ class Vets(Resource):
         db.session.add(vet)
         db.session.commit()
 
-        session['vet.id'] = vet.id
+        session['vet_id'] = vet.id
 
         return make_response(vet.to_dict(), 201 )
 
@@ -103,17 +103,19 @@ class Soaps(Resource):
 
     def post(self):
         data = request.get_json()
+        patient= int(data["patient_id"])
 
+        # ipdb.set_trace()
         try:
             new_soap = Soap(
                 ailment = data['ailment'],
                 body= data['body'],
                 created_at= data["created_at"],
                 vet_id= session["vet_id"],
-                patient_id= data["patient_id"]
+                patient_id= patient
             )
-        except:
-            response = make_response({'error': 'Invalid data.'}, 400)
+        except Exception as e: 
+            response = make_response({'error': str(e)}, 400)
             return response
 
         db.session.add(new_soap)
