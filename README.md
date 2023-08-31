@@ -34,6 +34,8 @@ run `` pipenv shell `` in main directory
 CD into ``server``
 run python app.py
 
+In a seperate terminal run:
+
    -  ``npm start --prefix client``
 
 Open your web browser and navigate to http://localhost:3000 to access the application.
